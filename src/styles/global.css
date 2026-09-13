@@ -781,6 +781,32 @@ h3 {
   line-height: 1.45;
 }
 
+.plain-list .detail-summary {
+  margin-top: 0.55rem;
+  color: #525d53;
+  font-size: 0.74rem;
+}
+
+.supporting-documents {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 2rem;
+}
+
+.supporting-documents .eyebrow {
+  margin-bottom: 0.35rem;
+  color: var(--green);
+}
+
+.supporting-documents a {
+  width: fit-content;
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.05em;
+  text-underline-offset: 0.25em;
+  text-transform: uppercase;
+}
+
 .contact-section {
   position: relative;
   display: grid;

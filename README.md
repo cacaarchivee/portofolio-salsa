@@ -1,78 +1,93 @@
 # Salsabilla Edlanda Putri — Portfolio
 
-Website portofolio statis untuk Salsabilla Edlanda Putri, Front-End Developer yang berfokus pada Angular, TypeScript, dan aplikasi web berbasis REST API.
+A static professional portfolio for Salsabilla Edlanda Putri, a Front-End Developer focused on Angular, TypeScript, and REST API-driven web applications.
 
-## Teknologi
+## Technology
 
-- Astro 7 dengan static generation
-- TypeScript strict
-- Astro Content Collections untuk enam studi kasus
-- CSS custom properties tanpa UI framework
-- JavaScript minimal untuk menu mobile, reveal, depth effect, dan copy email
+- Astro 7 with static generation
+- Strict TypeScript configuration
+- Astro Content Collections for six typed project case studies
+- Custom-property-based CSS without a UI framework
+- Minimal client-side JavaScript for the mobile menu, copy-email feedback, section reveals, and a restrained depth effect
+- Playwright browser checks for responsive behavior and critical interactions
 
-Situs tidak memerlukan database, autentikasi, API key, CMS, atau adapter server.
+The site does not require a database, authentication, API keys, a CMS, paid services, or a server adapter.
 
-## Menjalankan secara lokal
+## Local development
 
-Gunakan Node.js 24 LTS (minimal versi yang didukung proyek: `22.12.0`).
+Use Node.js 24 LTS. The minimum supported version declared by the project is Node.js `22.12.0`.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Astro akan menampilkan URL lokal, biasanya `http://localhost:4321`.
+Astro will print the local URL, usually `http://localhost:4321`.
 
-Perintah lain:
+Available commands:
 
 ```bash
-npm run check    # type dan content check
-npm run build    # production build ke dist/
-npm run preview  # preview production build
-npm test         # check, build, route/link/asset validation
-npm run test:browser # responsive, interaction, console, dan no-JS audit
+npm run dev          # start the development server
+npm run check        # run Astro, TypeScript, and content diagnostics
+npm run build        # create the production build in dist/
+npm run preview      # serve the production build locally
+npm test             # run checks, build, and route/link/asset validation
+npm run test:browser # audit responsive layouts, routes, interactions, console, reduced motion, and no-JS behavior
 ```
 
-## Struktur konten
+## Project structure
 
-- `src/data/profile.ts` — identitas, email, tautan, foto, dan path CV.
-- `src/data/experience.ts` — pengalaman, pendidikan, sertifikasi, organisasi, dan skill.
-- `src/content/projects/` — enam studi kasus dalam Markdown.
-- `public/images/` — cover proyek, Open Graph image, dan aset visual publik.
-- `public/documents/` — tempat CV PDF publik yang sudah disetujui.
-- `src/styles/global.css` — design tokens dan seluruh styling global.
+- `src/data/profile.ts` — identity, contact details, profile links, photo, and CV path.
+- `src/data/experience.ts` — professional experience, education, credentials, organizations, supporting documents, and skills.
+- `src/content/projects/` — six Markdown case studies validated by a typed content schema.
+- `src/components/` — shared navigation, footer, contact, and project-preview components.
+- `src/layouts/BaseLayout.astro` — shared document shell, metadata, and structured data.
+- `src/styles/global.css` — global design tokens, responsive layout, accessibility states, and motion.
+- `public/images/` — project covers, social image, and public visual assets.
+- `public/documents/` — the reviewed public CV PDF, once available.
+- `scripts/` — built-output validation and Playwright browser audit.
 
-Field opsional yang kosong tidak dirender. Isi nilai aslinya di file data atau frontmatter proyek; tidak perlu mengubah komponen.
+Optional empty fields are not rendered. Update the relevant data file or project frontmatter; components do not need to be edited for routine content changes.
 
-### Menambahkan CV
+## Updating content
 
-1. Pastikan PDF final sudah diperiksa dan aman dipublikasikan.
-2. Simpan, misalnya, sebagai `public/documents/salsabilla-edlanda-putri-cv.pdf`.
-3. Ubah `cvPath` di `src/data/profile.ts` menjadi `/documents/salsabilla-edlanda-putri-cv.pdf`.
-4. Jalankan `npm test`. Tombol download akan tampil otomatis.
+### Add the public CV
 
-### Menambahkan foto atau screenshot
+1. Confirm that the final PDF is accurate and approved for publication.
+2. Save it as, for example, `public/documents/salsabilla-edlanda-putri-cv.pdf`.
+3. Set `cvPath` in `src/data/profile.ts` to `/documents/salsabilla-edlanda-putri-cv.pdf`.
+4. Run `npm test`. The download button will appear automatically.
 
-Simpan aset web yang telah mendapat izin di `public/images/`, lalu isi `photo` di `profile.ts` atau `cover` pada frontmatter proyek. Gunakan nama file huruf kecil dengan tanda hubung, dimensi eksplisit, dan format modern bila memungkinkan.
+The source DOCX must not be committed as the public download.
 
-### Link proyek dan sertifikat
+### Add a profile photo or project screenshot
 
-Link hanya boleh ditambahkan setelah URL diverifikasi. Frontmatter proyek menerima `demoUrl` dan `sourceUrl`; item sertifikat menerima `url`. Tombol tidak akan muncul selama field tersebut belum diisi.
+Place approved web assets in `public/images/`, then set `photo` in `profile.ts` or `cover` in the appropriate project frontmatter. Prefer lowercase, hyphenated filenames, explicit dimensions, and efficient web formats.
 
-## URL produksi dan SEO
+Until approved screenshots are available, the site uses intentionally abstract SVG project covers. They are not presented as production screenshots.
 
-Tanpa `SITE_URL`, build tetap berfungsi tetapi menggunakan `noindex,nofollow`, tidak membuat canonical, dan tidak menghasilkan sitemap. Ini mencegah preview tanpa domain final terindeks.
+### Add project and credential links
 
-Setelah domain produksi diketahui, isi environment variable berikut di Vercel:
+Only publish verified URLs. Project frontmatter accepts optional `demoUrl` and `sourceUrl` fields, and each certification entry accepts an optional `url`. No button is rendered while a field is empty.
+
+The three supporting-document URLs currently shown on the site were extracted from the source CV and verified as publicly reachable. They are kept as document-level links rather than being mapped to individual credentials without evidence.
+
+## Production URL and SEO
+
+Without `SITE_URL`, the build remains functional but emits `noindex,nofollow`, omits canonical URLs, and does not generate a sitemap. This prevents an unconfigured preview from being indexed.
+
+Once the final production domain is known, set this environment variable in Vercel:
 
 ```text
-SITE_URL=https://domain-final-yang-sudah-diverifikasi.tld
+SITE_URL=https://your-verified-production-domain.tld
 ```
 
-Build produksi kemudian menghasilkan canonical URL, `sitemap-index.xml`, dan aturan `robots.txt` yang indexable. Jangan memakai URL preview sebagai `SITE_URL`.
+A production build with `SITE_URL` generates canonical URLs, `sitemap-index.xml`, and indexable `robots.txt` rules. Do not use a temporary preview URL or an unverified domain as the value.
 
-## Pemeriksaan konten
+## Source and privacy policy
 
-Konten saat ini dibatasi pada fakta dalam brief proyek. Dokumen sumber `CV_Salsabilla_Edlanda_Putri.docx` dan `Project_Portfolio_Details_Salsabilla_Edlanda_Putri.pdf` belum berada di repository saat implementasi awal. Lakukan verifikasi akhir terhadap dokumen tersebut sebelum memperluas klaim atau menambahkan tautan.
+The content was checked against the supplied `CV_Salsabilla_Edlanda_Putri.docx` and `Project_Portfolio_Details_Salsabilla_Edlanda_Putri.pdf`, including the DOCX's original hyperlink relationships. Those raw source documents remain outside the repository and must not be committed.
 
-Daftar data yang masih diperlukan ada di [CONTENT_TODO.md](./CONTENT_TODO.md). Panduan deployment pemilik ada di [DEPLOYMENT.md](./DEPLOYMENT.md).
+Unknown dates, unverified project URLs, private client details, and unsupported performance claims are deliberately omitted. The phone and WhatsApp number found in the source CV are also withheld until the owner explicitly confirms publication.
+
+See [CONTENT_TODO.md](./CONTENT_TODO.md) for the remaining content decisions and [DEPLOYMENT.md](./DEPLOYMENT.md) for the owner-managed Vercel handoff.

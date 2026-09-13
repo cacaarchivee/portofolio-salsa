@@ -10,6 +10,7 @@ import {
   experience,
   organizations,
   skillGroups,
+  supportingDocuments,
 } from '../data/experience';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -140,16 +141,32 @@ const featuredProjects = projects.filter((project) => project.data.featured);
               ) : (
                 <span>{item.title}</span>
               )}
-              <small>{item.issuer} · {item.issued}</small>
+              <small class="detail-meta">{item.issuer} · {item.issued}</small>
+              <small class="detail-summary">{item.summary}</small>
             </li>
           ))}
         </ul>
+        <div class="supporting-documents">
+          <p class="eyebrow">Supporting documents</p>
+          {supportingDocuments.map((document) => (
+            <a href={document.url} target="_blank" rel="noreferrer">
+              {document.label} <span aria-hidden="true">↗</span>
+              <span class="sr-only"> (opens in a new tab)</span>
+            </a>
+          ))}
+        </div>
       </div>
 
       <div class="about-detail" data-reveal>
         <p class="eyebrow">Beyond the code</p>
         <ul class="plain-list">
-          {organizations.map((item) => <li><span>{item}</span></li>)}
+          {organizations.map((item) => (
+            <li>
+              <span>{item.role}</span>
+              <small class="detail-meta">{item.organization}{item.timeframe && ` · ${item.timeframe}`}</small>
+              <small class="detail-summary">{item.summary}</small>
+            </li>
+          ))}
           <li><span>Indonesian · English CEFR B2</span></li>
         </ul>
       </div>

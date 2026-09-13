@@ -3,7 +3,7 @@ title: "Mobile Application Development"
 shortTitle: "Mobile Applications"
 description: "A group of academic Android applications exploring local data, GPS, accelerometer input, and sound measurement."
 category: "Academic project"
-role: "Mobile Application Developer"
+role: "Android Developer"
 stack:
   - Java
   - Android Studio

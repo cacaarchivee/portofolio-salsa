@@ -29,7 +29,7 @@ The work needed to keep public-facing information responsive and maintainable wh
 
 ## My contribution
 
-Salsabilla developed responsive interfaces, contributed to company-profile development and maintenance, managed employee login and registration data, supported activity timestamps, and performed testing and troubleshooting.
+Salsabilla translated UI/UX designs from the design team into responsive interfaces, contributed to company-profile development and maintenance, managed employee login and registration data, supported activity timestamps, and performed testing and troubleshooting.
 
 ## Implementation highlights
 

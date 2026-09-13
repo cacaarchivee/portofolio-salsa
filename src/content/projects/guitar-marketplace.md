@@ -27,14 +27,16 @@ The project brought together account access, product browsing, cart calculations
 
 ## My contribution
 
-As the full-stack developer, Salsabilla implemented registration and login, product catalogue and detail pages, a PHP Session cart, quantity controls, subtotal and total calculations, checkout, and storage for orders and order items.
+As the full-stack developer, Salsabilla implemented registration and login, product catalogue and detail pages, a PHP Session cart, quantity controls, subtotal and total calculations, checkout, responsive layouts, and storage for users, orders, and order items.
 
 ## Implementation highlights
 
 - Created a catalogue → cart → checkout journey.
+- Presented new and second-hand product information through catalogue and detail views.
 - Stored cart state in PHP Session and updated quantities and totals.
+- Collected customer details and shipping addresses, then presented an order summary at checkout.
 - Used MySQL and phpMyAdmin for account, product, order, and order-item data.
-- Connected server-rendered PHP flows with JavaScript-enhanced interactions.
+- Connected server-rendered PHP flows with JavaScript-enhanced, responsive interactions.
 
 ## Outcome
 
