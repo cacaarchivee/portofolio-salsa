@@ -21,3 +21,4 @@ Thumbs.db
 # public documents are opt-in: keep the folder, not unreviewed source CVs
 public/documents/*
 !public/documents/.gitkeep
+!public/documents/salsabilla-edlanda-putri-cv.pdf

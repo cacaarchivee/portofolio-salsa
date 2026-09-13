@@ -2,6 +2,8 @@
 
 A static professional portfolio for Salsabilla Edlanda Putri, a Front-End Developer focused on Angular, TypeScript, and REST API-driven web applications.
 
+For routine text, project, image, CV, and link updates, see the highlighted status guide in [OWNER_CONTENT_GUIDE.md](./OWNER_CONTENT_GUIDE.md).
+
 ## Technology
 
 - Astro 7 with static generation
@@ -46,6 +48,7 @@ npm run test:browser # audit responsive layouts, routes, interactions, console, 
 - `public/images/` — project covers, social image, and public visual assets.
 - `public/documents/` — the reviewed public CV PDF, once available.
 - `scripts/` — built-output validation and Playwright browser audit.
+- `OWNER_CONTENT_GUIDE.md` — owner-facing instructions for routine content and asset changes.
 
 Optional empty fields are not rendered. Update the relevant data file or project frontmatter; components do not need to be edited for routine content changes.
 
@@ -60,11 +63,13 @@ Optional empty fields are not rendered. Update the relevant data file or project
 
 The source DOCX must not be committed as the public download.
 
-### Add a profile photo or project screenshot
+### Add a project screenshot
 
-Place approved web assets in `public/images/`, then set `photo` in `profile.ts` or `cover` in the appropriate project frontmatter. Prefer lowercase, hyphenated filenames, explicit dimensions, and efficient web formats.
+Place approved web assets in `public/images/`, then set `cover` in the appropriate project frontmatter. Prefer lowercase, hyphenated filenames, explicit dimensions, and efficient web formats.
 
 Until approved screenshots are available, the site uses intentionally abstract SVG project covers. They are not presented as production screenshots.
+
+`profile.photo` is reserved in the data model but is not rendered by the current layout. Adding a visible portrait requires a component and layout update; setting that field alone will not display an image.
 
 ### Add project and credential links
 
@@ -90,4 +95,4 @@ The content was checked against the supplied `CV_Salsabilla_Edlanda_Putri.docx` 
 
 Unknown dates, unverified project URLs, private client details, and unsupported performance claims are deliberately omitted. The phone and WhatsApp contact found in the source CV are published following the owner's instruction to display all available identity details.
 
-See [CONTENT_TODO.md](./CONTENT_TODO.md) for the remaining content decisions and [DEPLOYMENT.md](./DEPLOYMENT.md) for the owner-managed Vercel handoff.
+See [OWNER_CONTENT_GUIDE.md](./OWNER_CONTENT_GUIDE.md) for update instructions, [CONTENT_TODO.md](./CONTENT_TODO.md) for the remaining content decisions, and [DEPLOYMENT.md](./DEPLOYMENT.md) for the owner-managed Vercel handoff.

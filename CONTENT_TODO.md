@@ -2,6 +2,8 @@
 
 Item berikut sengaja tidak ditampilkan sampai data asli dan izin publikasinya tersedia.
 
+Panduan lokasi file dan cara memperbaruinya tersedia di [OWNER_CONTENT_GUIDE.md](./OWNER_CONTENT_GUIDE.md). Tabel status di awal panduan menandai fitur yang sudah siap, masih menunggu konten, atau memerlukan perubahan kode.
+
 - [ ] Isi URL LinkedIn asli di `src/data/profile.ts`.
 - [ ] Isi periode Front-End Developer Intern setelah diverifikasi.
 - [ ] Isi periode Research & Development Division Coordinator yang masih belum tersedia.
