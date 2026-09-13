@@ -13,7 +13,7 @@
   --page-pad: clamp(1.25rem, 4.8vw, 5rem);
   --header-height: 4.75rem;
   --max-width: 92rem;
-  --radius: 0.65rem;
+  --radius: 1.75rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -106,6 +106,7 @@ h3 {
   top: 0.75rem;
   left: 0.75rem;
   padding: 0.8rem 1rem;
+  border-radius: 999px;
   transform: translateY(-180%);
   color: var(--ink);
   background: var(--lime);
@@ -152,16 +153,16 @@ h3 {
   text-decoration: none;
 }
 
-.wordmark > span:first-child {
-  display: grid;
-  width: 2.6rem;
-  height: 2rem;
-  place-items: center;
-  color: var(--ink);
-  background: var(--lime);
-  font-size: 0.66rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
+.brand-logo {
+  width: 3.6rem;
+  height: auto;
+  flex: 0 0 auto;
+  transition: transform 240ms var(--ease);
+}
+
+.wordmark:hover .brand-logo,
+.wordmark:focus-visible .brand-logo {
+  transform: translateX(0.2rem) scale(1.04);
 }
 
 .site-nav {
@@ -205,7 +206,8 @@ h3 {
   width: 2.75rem;
   height: 2.75rem;
   padding: 0.7rem;
-  border: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
   color: var(--white);
   background: transparent;
   cursor: pointer;
@@ -263,6 +265,7 @@ h3 {
 
 .hero-kicker span {
   padding: 0.45rem 0.6rem;
+  border-radius: 999px;
   color: var(--ink);
   background: var(--lime);
 }
@@ -330,6 +333,7 @@ h3 {
   min-height: 3.4rem;
   padding: 0.9rem 1rem 0.9rem 1.2rem;
   border: 1px solid var(--lime);
+  border-radius: 999px;
   color: var(--ink);
   background: var(--lime);
   font-size: 0.68rem;
@@ -686,6 +690,7 @@ h3 {
   min-width: 3.2rem;
   height: 2.25rem;
   padding-inline: 0.65rem;
+  border-radius: 999px;
   place-items: center;
   color: var(--ink);
   background: var(--lime);
@@ -766,6 +771,7 @@ h3 {
   gap: 2rem;
   margin-top: clamp(4.5rem, 8vw, 8rem);
   padding: 1.5rem;
+  border-radius: 1.5rem;
   color: var(--lime);
   background: var(--ink);
   font-size: clamp(1rem, 2.1vw, 2rem);
@@ -840,6 +846,7 @@ h3 {
   place-items: center;
   color: var(--ink);
   background: var(--lime);
+  border-radius: 50%;
   font-size: 0.55rem;
   font-weight: 900;
 }
@@ -924,6 +931,7 @@ h3 {
   width: fit-content;
   margin-bottom: 1rem;
   padding: 0.35rem 0.55rem;
+  border-radius: 999px;
   color: var(--ink);
   background: var(--lime);
   font-size: 0.58rem;
@@ -1049,6 +1057,7 @@ h3 {
   gap: 0.55rem;
   margin-top: 2rem;
   padding: 1.2rem;
+  border-radius: 1.5rem;
   color: var(--lime-soft);
   background: var(--forest);
 }
@@ -1189,6 +1198,7 @@ h3 {
   min-height: 2.4rem;
   padding-inline: 0.8rem;
   border: 1px solid var(--ink);
+  border-radius: 999px;
   color: var(--lime);
   background: var(--ink);
   font: inherit;
@@ -1229,12 +1239,8 @@ h3 {
   gap: 1.5rem;
 }
 
-.footer-mark {
-  color: var(--lime);
-  font-size: clamp(2.7rem, 5vw, 5.5rem);
-  font-weight: 900;
-  letter-spacing: -0.09em;
-  line-height: 0.78;
+.footer-brand .brand-logo {
+  width: clamp(4.25rem, 5vw, 5.6rem);
 }
 
 .footer-brand p,
