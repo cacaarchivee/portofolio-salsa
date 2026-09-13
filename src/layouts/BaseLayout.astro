@@ -29,6 +29,7 @@ const personSchema = {
   name: profile.name,
   jobTitle: profile.role,
   email: `mailto:${profile.email}`,
+  ...(profile.phone ? { telephone: profile.phone } : {}),
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Semarang',
@@ -47,7 +48,7 @@ const personSchema = {
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f7f5ef" />
+    <meta name="theme-color" content="#0d1210" />
     <meta name="color-scheme" content="light" />
     <meta name="robots" content={Astro.site ? 'index,follow' : 'noindex,nofollow'} />
     {canonical && <link rel="canonical" href={canonical} />}

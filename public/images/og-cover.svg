@@ -1,15 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <rect width="1200" height="630" fill="#F7F5EF"/>
-  <rect x="820" width="380" height="630" fill="#244C3A"/>
-  <g opacity=".25" stroke="#F7F5EF">
-    <path d="M820 90h380M820 180h380M820 270h380M820 360h380M820 450h380M820 540h380"/>
-    <path d="M910 0v630M1000 0v630M1090 0v630"/>
-    <circle cx="1010" cy="315" r="155"/>
-    <circle cx="1010" cy="315" r="88"/>
+  <rect width="1200" height="630" fill="#0D1210"/>
+  <rect x="0" y="0" width="28" height="630" fill="#C8FF5A"/>
+  <rect x="815" y="0" width="385" height="630" fill="#153D31"/>
+  <g fill="none" stroke="#C8FF5A" opacity=".22">
+    <path d="M815 90h385M815 180h385M815 270h385M815 360h385M815 450h385M815 540h385"/>
+    <path d="M905 0v630M995 0v630M1085 0v630"/>
+    <circle cx="1008" cy="315" r="154"/>
+    <circle cx="1008" cy="315" r="88"/>
   </g>
-  <text x="72" y="98" fill="#244C3A" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">FRONT-END DEVELOPER</text>
-  <text x="66" y="260" fill="#20251F" font-family="Georgia, serif" font-size="82">Salsabilla</text>
-  <text x="66" y="348" fill="#20251F" font-family="Georgia, serif" font-size="82">Edlanda Putri</text>
-  <text x="72" y="458" fill="#667066" font-family="Arial, sans-serif" font-size="26">Angular · TypeScript · API-driven applications</text>
-  <text x="885" y="350" fill="#F7F5EF" font-family="Georgia, serif" font-size="105" font-style="italic">SEP</text>
+  <rect x="72" y="66" width="190" height="34" fill="#C8FF5A"/>
+  <text x="88" y="89" fill="#0D1210" font-family="Arial, sans-serif" font-size="15" font-weight="900" letter-spacing="2">FRONT-END DEVELOPER</text>
+  <text x="66" y="255" fill="#FBFCF8" font-family="Arial, sans-serif" font-size="84" font-weight="900" letter-spacing="-6">SALSABILLA</text>
+  <text x="66" y="345" fill="#FBFCF8" font-family="Arial, sans-serif" font-size="84" font-weight="900" letter-spacing="-6">EDLANDA PUTRI<tspan fill="#C8FF5A">.</tspan></text>
+  <text x="72" y="444" fill="#AAB4AD" font-family="Arial, sans-serif" font-size="24">Angular · TypeScript · API-driven applications</text>
+  <text x="888" y="380" fill="#C8FF5A" font-family="Arial, sans-serif" font-size="194" font-weight="900" letter-spacing="-15">S</text>
+  <text x="846" y="575" fill="#FBFCF8" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">SEMARANG / INDONESIA</text>
 </svg>

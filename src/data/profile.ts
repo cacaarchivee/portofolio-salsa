@@ -1,6 +1,7 @@
 export interface ProfileLinks {
   github: string;
   linkedin?: string;
+  whatsapp?: string;
 }
 
 export interface Profile {
@@ -28,6 +29,7 @@ export const profile: Profile = {
   bio: 'I turn product requirements and API responses into responsive, maintainable interfaces. My work spans professional web applications, academic systems, and careful collaboration from prototype through delivery.',
   links: {
     github: 'https://github.com/cacaarchivee',
+    whatsapp: 'https://wa.me/6285866938562',
     // Add the verified LinkedIn URL here. The link appears automatically once filled.
     linkedin: '',
   },
@@ -35,6 +37,5 @@ export const profile: Profile = {
   photo: '',
   // Add /documents/salsabilla-edlanda-putri-cv.pdf only after the public PDF is reviewed.
   cvPath: '',
-  // Add a public phone number only after the owner confirms publication.
-  phone: '',
+  phone: '+62 858-6693-8562',
 };

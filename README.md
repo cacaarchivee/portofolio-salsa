@@ -88,6 +88,6 @@ A production build with `SITE_URL` generates canonical URLs, `sitemap-index.xml`
 
 The content was checked against the supplied `CV_Salsabilla_Edlanda_Putri.docx` and `Project_Portfolio_Details_Salsabilla_Edlanda_Putri.pdf`, including the DOCX's original hyperlink relationships. Those raw source documents remain outside the repository and must not be committed.
 
-Unknown dates, unverified project URLs, private client details, and unsupported performance claims are deliberately omitted. The phone and WhatsApp number found in the source CV are also withheld until the owner explicitly confirms publication.
+Unknown dates, unverified project URLs, private client details, and unsupported performance claims are deliberately omitted. The phone and WhatsApp contact found in the source CV are published following the owner's instruction to display all available identity details.
 
 See [CONTENT_TODO.md](./CONTENT_TODO.md) for the remaining content decisions and [DEPLOYMENT.md](./DEPLOYMENT.md) for the owner-managed Vercel handoff.

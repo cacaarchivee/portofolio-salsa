@@ -24,40 +24,80 @@ const featuredProjects = projects.filter((project) => project.data.featured);
 >
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <p class="hero-kicker">{profile.role} · Semarang, Indonesia</p>
-      <p class="hero-name" aria-hidden="true">Salsabilla<br />Edlanda Putri</p>
-      <h1 id="hero-title">I build clear, responsive interfaces for real-world applications.</h1>
+      <p class="hero-kicker"><span>SEP / Portfolio</span> {profile.role}</p>
+      <h1 id="hero-title">
+        <span>Salsabilla</span>
+        <span>Edlanda Putri<span class="accent-dot">.</span></span>
+      </h1>
+      <p class="hero-statement">I build clear, responsive interfaces for real-world applications.</p>
       <p class="hero-intro">
-        Angular and TypeScript development, REST API integration, and collaborative delivery experience for an Ireland-based company.
+        Angular, TypeScript, and REST API integration—backed by collaborative delivery experience for an Ireland-based company.
       </p>
       <div class="hero-actions">
-        <a class="button" href="#work">View selected work <span aria-hidden="true">↓</span></a>
+        <a class="button" href="#work">Explore selected work <span aria-hidden="true">↘</span></a>
+        <a class="text-link text-link--inverse" href="#contact">Contact me <span aria-hidden="true">↗</span></a>
         {profile.cvPath && (
-          <a class="text-link" href={profile.cvPath} download>Download CV <span aria-hidden="true">↓</span></a>
+          <a class="text-link text-link--inverse" href={profile.cvPath} download>Download CV <span aria-hidden="true">↓</span></a>
         )}
       </div>
+
+      <dl class="hero-meta">
+        <div>
+          <dt>Based in</dt>
+          <dd>Semarang, Indonesia</dd>
+        </div>
+        <div>
+          <dt>Core stack</dt>
+          <dd>Angular · TypeScript</dd>
+        </div>
+        {profile.phone && (
+          <div>
+            <dt>Direct line</dt>
+            <dd><a href={`tel:${profile.phone.replace(/[\s-]/g, '')}`}>{profile.phone}</a></dd>
+          </div>
+        )}
+      </dl>
     </div>
 
     <div class="hero-visual" aria-hidden="true" data-depth>
-      <div class="hero-orbit hero-orbit--one"></div>
-      <div class="hero-orbit hero-orbit--two"></div>
-      <span class="hero-monogram">SEP</span>
+      <div class="visual-topline">
+        <span>Frontend systems</span>
+        <span>06° 58′ S</span>
+      </div>
+      <div class="visual-stage">
+        <span class="visual-cross visual-cross--one">+</span>
+        <span class="visual-cross visual-cross--two">+</span>
+        <span class="hero-monogram">S</span>
+        <span class="visual-coordinate">110° 25′ E</span>
+      </div>
+      <div class="visual-code">
+        <span style="--line: 86%"></span>
+        <span style="--line: 63%"></span>
+        <span style="--line: 74%"></span>
+        <span style="--line: 42%"></span>
+      </div>
       <div class="hero-note">
-        <span>Interfaces</span>
-        <span>Systems</span>
-        <span>Clarity</span>
+        <span>Angular</span>
+        <span>TypeScript</span>
+        <span>REST APIs</span>
       </div>
     </div>
-    <p class="hero-scroll" aria-hidden="true">Scroll to explore <span>↓</span></p>
   </section>
+
+  <div class="signal-strip" aria-label="Primary capabilities">
+    <span>Responsive UI</span><span aria-hidden="true">●</span>
+    <span>API integration</span><span aria-hidden="true">●</span>
+    <span>Angular development</span><span aria-hidden="true">●</span>
+    <span>Product delivery</span>
+  </div>
 
   <section class="work-section section-shell" id="work" aria-labelledby="work-title">
     <div class="section-heading" data-reveal>
-      <p class="section-number">01 / Selected work</p>
+      <p class="section-number">01 — Selected work</p>
       <div>
-        <h2 id="work-title">Built for use,<br />not just display.</h2>
+        <h2 id="work-title">Selected work.<br />Real ownership.</h2>
         <p>
-          Selected projects across professional product work and full-stack academic development.
+          Professional product work and academic systems, with each contribution separated clearly from the wider team effort.
         </p>
       </div>
     </div>
@@ -67,22 +107,23 @@ const featuredProjects = projects.filter((project) => project.data.featured);
       ))}
     </div>
     <a class="section-link" href="/projects/">
-      Explore all six projects <span aria-hidden="true">↗</span>
+      <span>View the full project archive</span>
+      <span aria-hidden="true">06 projects ↗</span>
     </a>
   </section>
 
   <section class="experience-section section-shell" id="experience" aria-labelledby="experience-title">
     <div class="section-heading section-heading--compact" data-reveal>
-      <p class="section-number">02 / Experience</p>
-      <h2 id="experience-title">Work shaped by the whole delivery cycle.</h2>
+      <p class="section-number">02 — Experience</p>
+      <h2 id="experience-title">From interface detail to delivery.</h2>
     </div>
     <div class="timeline">
-      {experience.map((item) => (
+      {experience.map((item, index) => (
         <article class="timeline-item" data-reveal>
-          <div class="timeline-period" aria-hidden={!item.timeframe ? 'true' : undefined}>{item.timeframe}</div>
+          <div class="timeline-period"><span aria-hidden="true">0{index + 1}</span>{item.timeframe}</div>
           <div class="timeline-title">
             <h3>{item.role}</h3>
-            <p>{item.company}</p>
+            <p>{item.company} · Remote</p>
           </div>
           <p>{item.summary}</p>
         </article>
@@ -91,10 +132,11 @@ const featuredProjects = projects.filter((project) => project.data.featured);
   </section>
 
   <section class="capabilities-section" aria-labelledby="capabilities-title">
+    <div class="capabilities-mark" aria-hidden="true">TOOLKIT</div>
     <div class="section-shell">
       <div class="capabilities-intro" data-reveal>
-        <p class="section-number">03 / Capabilities</p>
-        <h2 id="capabilities-title">Front-end depth with practical range.</h2>
+        <p class="section-number">03 — Capabilities</p>
+        <h2 id="capabilities-title">The stack behind the screens.</h2>
       </div>
       <div class="skill-groups">
         {skillGroups.map((group, index) => (
@@ -102,7 +144,7 @@ const featuredProjects = projects.filter((project) => project.data.featured);
             <p class="skill-index">0{index + 1}</p>
             <h3>{group.label}</h3>
             <ul>
-              {group.skills.map((skill) => <li>{skill}</li>)}
+              {group.skills.map((skill) => <li>{skill}<span aria-hidden="true">↗</span></li>)}
             </ul>
           </div>
         ))}
@@ -112,15 +154,15 @@ const featuredProjects = projects.filter((project) => project.data.featured);
 
   <section class="about-section section-shell" id="about" aria-labelledby="about-title">
     <div class="section-heading" data-reveal>
-      <p class="section-number">04 / About</p>
+      <p class="section-number">04 — Profile</p>
       <div>
-        <h2 id="about-title">Thoughtful implementation starts with understanding the system.</h2>
+        <h2 id="about-title">A developer who thinks in systems.</h2>
         <p>{profile.bio}</p>
       </div>
     </div>
 
     <div class="about-details">
-      <div class="about-detail" data-reveal>
+      <div class="about-detail about-detail--education" data-reveal>
         <p class="eyebrow">Education</p>
         {education.map((item) => (
           <div>
@@ -147,7 +189,7 @@ const featuredProjects = projects.filter((project) => project.data.featured);
           ))}
         </ul>
         <div class="supporting-documents">
-          <p class="eyebrow">Supporting documents</p>
+          <p class="eyebrow">Verified documents</p>
           {supportingDocuments.map((document) => (
             <a href={document.url} target="_blank" rel="noreferrer">
               {document.label} <span aria-hidden="true">↗</span>
@@ -158,7 +200,7 @@ const featuredProjects = projects.filter((project) => project.data.featured);
       </div>
 
       <div class="about-detail" data-reveal>
-        <p class="eyebrow">Beyond the code</p>
+        <p class="eyebrow">Leadership</p>
         <ul class="plain-list">
           {organizations.map((item) => (
             <li>
@@ -167,7 +209,10 @@ const featuredProjects = projects.filter((project) => project.data.featured);
               <small class="detail-summary">{item.summary}</small>
             </li>
           ))}
-          <li><span>Indonesian · English CEFR B2</span></li>
+          <li>
+            <span>Languages</span>
+            <small class="detail-meta">Indonesian · English CEFR B2</small>
+          </li>
         </ul>
       </div>
     </div>

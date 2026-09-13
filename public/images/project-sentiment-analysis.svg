@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
-  <rect width="1200" height="800" fill="#244C3A"/>
-  <g fill="none" stroke="#E9EEE6" opacity=".24">
+  <rect width="1200" height="800" fill="#153D31"/>
+  <g fill="none" stroke="#C8FF5A" opacity=".24">
     <path d="M80 100h1040M80 250h1040M80 400h1040M80 550h1040M80 700h1040"/>
     <path d="M100 80v640M300 80v640M500 80v640M700 80v640M900 80v640M1100 80v640"/>
   </g>
-  <path d="M100 580C255 560 286 338 432 365s165 180 295 115 167-283 373-260" fill="none" stroke="#F7F5EF" stroke-width="12"/>
+  <path d="M100 580C255 560 286 338 432 365s165 180 295 115 167-283 373-260" fill="none" stroke="#C8FF5A" stroke-width="12"/>
   <path d="M100 620c160-30 260-8 350-85s178-260 304-178 181 192 346 155" fill="none" stroke="#B8C9BA" stroke-width="6"/>
-  <g fill="#F7F5EF">
+  <g fill="#C8FF5A">
     <circle cx="100" cy="580" r="19"/><circle cx="432" cy="365" r="19"/><circle cx="727" cy="480" r="19"/><circle cx="1100" cy="220" r="19"/>
   </g>
-  <g fill="#E9EEE6" font-family="Georgia,serif" font-size="48" font-style="italic">
+  <g fill="#FBFCF8" font-family="Arial,sans-serif" font-size="42" font-weight="800">
     <text x="95" y="155">negative</text><text x="487" y="155">neutral</text><text x="868" y="155">positive</text>
   </g>
 </svg>

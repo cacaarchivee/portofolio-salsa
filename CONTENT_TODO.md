@@ -10,7 +10,6 @@ Item berikut sengaja tidak ditampilkan sampai data asli dan izin publikasinya te
 - [ ] Isi link live demo dan repository proyek hanya setelah URL asli diverifikasi.
 - [ ] Tambahkan link langsung untuk masing-masing sertifikat bila tersedia. Tiga link koleksi dokumen dari CV sudah diverifikasi dan ditampilkan tanpa mengubah sharing Google Drive.
 - [ ] Tempatkan CV PDF publik final di `public/documents/`, lalu isi `cvPath` di `src/data/profile.ts`.
-- [ ] Konfirmasi apakah nomor telepon/WhatsApp boleh dipublikasikan sebelum mengisi `phone`.
 - [ ] Isi `SITE_URL` di Vercel setelah domain produksi final diketahui.
 
 Repository tujuan sudah ditentukan dan diverifikasi: `https://github.com/cacaarchivee/portofolio-salsa`.

@@ -31,6 +31,9 @@ const { data } = project;
     <h3><a href={`/projects/${project.id}/`}>{data.title}</a></h3>
     <p>{data.description}</p>
     <p class="project-role">Role — {data.role}</p>
+    <ul class="project-stack" aria-label="Primary technologies">
+      {data.stack.slice(0, 4).map((item) => <li>{item}</li>)}
+    </ul>
     <a class="text-link" href={`/projects/${project.id}/`}>
       Read case study <span aria-hidden="true">↗</span>
     </a>

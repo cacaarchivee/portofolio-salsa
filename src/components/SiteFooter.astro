@@ -3,17 +3,23 @@ import { profile } from '../data/profile';
 ---
 
 <footer class="site-footer">
-  <div class="footer-mark" aria-hidden="true">SEP</div>
-  <div class="footer-meta">
+  <div class="footer-brand">
+    <span class="footer-mark" aria-hidden="true">S/EP</span>
     <p>{profile.name}<br />{profile.role}</p>
-    <p>{profile.location}<br />Built with Astro</p>
+  </div>
+  <div class="footer-meta">
+    <p>Based in<br />{profile.location}</p>
+    {profile.phone && <p>Phone<br /><a href={`tel:${profile.phone.replace(/[\s-]/g, '')}`}>{profile.phone}</a></p>}
   </div>
   <div class="footer-links">
     <a href={`mailto:${profile.email}`}>Email</a>
     <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
+    {profile.links.whatsapp && (
+      <a href={profile.links.whatsapp} target="_blank" rel="noreferrer">WhatsApp<span class="sr-only"> (opens in a new tab)</span></a>
+    )}
     {profile.links.linkedin && (
       <a href={profile.links.linkedin} target="_blank" rel="noreferrer">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a>
     )}
-    <a href="#main-content">Back to top</a>
+    <a href="#main-content">Back to top ↑</a>
   </div>
 </footer>
