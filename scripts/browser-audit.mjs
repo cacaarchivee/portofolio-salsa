@@ -68,7 +68,9 @@ try {
       { width: 320, height: 720 },
       { width: 375, height: 812 },
       { width: 768, height: 1024 },
+      { width: 1280, height: 900 },
       { width: 1440, height: 1000 },
+      { width: 1920, height: 1080 },
     ]) {
       const context = await browser.newContext({ viewport });
       await context.grantPermissions(['clipboard-read', 'clipboard-write'], { origin });
@@ -90,6 +92,43 @@ try {
         `Horizontal overflow at ${viewport.width}px: ${overflow.scrollWidth}px > ${overflow.clientWidth}px`,
       );
 
+      const heroGeometry = await page.evaluate(() => {
+          const nameLines = [...document.querySelectorAll('.hero h1 > span')];
+          const visual = document.querySelector('.hero-visual');
+          const copy = document.querySelector('.hero-copy');
+          const radar = document.querySelector('.visual-stage');
+          if (!visual || !copy || !radar || nameLines.length === 0) return null;
+          const lineRights = nameLines.map((line) => {
+            const range = document.createRange();
+            range.selectNodeContents(line);
+            return range.getBoundingClientRect().right;
+          });
+          const radarRect = radar.getBoundingClientRect();
+          return {
+            nameRight: Math.max(...lineRights),
+            copyRight: copy.getBoundingClientRect().right,
+            visualLeft: visual.getBoundingClientRect().left,
+            radarWidth: radarRect.width,
+            radarHeight: radarRect.height,
+          };
+      });
+      assert.ok(heroGeometry, `Hero geometry could not be measured at ${viewport.width}px`);
+      assert.ok(
+        heroGeometry.nameRight <= heroGeometry.copyRight,
+        `Hero name crossed its text column at ${viewport.width}px: ${heroGeometry.nameRight}px > ${heroGeometry.copyRight}px`,
+      );
+      assert.ok(
+        Math.abs(heroGeometry.radarWidth - heroGeometry.radarHeight) <= 1,
+        `Radar is not square at ${viewport.width}px: ${heroGeometry.radarWidth}px × ${heroGeometry.radarHeight}px`,
+      );
+
+      if (viewport.width >= 1280) {
+        assert.ok(
+          heroGeometry.nameRight <= heroGeometry.visualLeft,
+          `Hero name crossed into the visual at ${viewport.width}px: ${heroGeometry.nameRight}px > ${heroGeometry.visualLeft}px`,
+        );
+      }
+
       if (viewport.width === 375) {
         const menuButton = page.locator('[data-menu-toggle]');
         await menuButton.click();
@@ -107,6 +146,12 @@ try {
       if (viewport.width === 1440) {
         await revealPage(page);
         await page.screenshot({ path: path.join(artifacts, 'home-1440.png'), fullPage: true });
+      }
+
+
+      if (viewport.width === 1920) {
+        await revealPage(page);
+        await page.screenshot({ path: path.join(artifacts, 'home-1920.png'), fullPage: true });
       }
 
       await context.close();
@@ -160,7 +205,7 @@ try {
     await browser.close();
   }
 
-  console.log('Browser audit passed: 4 viewports, 8 routes with refresh, mobile interactions, 404, reduced motion, no-JS, and console checks.');
+  console.log('Browser audit passed: 6 viewports, hero-boundary checks, 8 routes with refresh, mobile interactions, 404, reduced motion, no-JS, and console checks.');
   console.log(`Screenshots: ${path.join(artifacts, 'home-375.png')} and ${path.join(artifacts, 'home-1440.png')}`);
 } finally {
   server.kill();

@@ -239,6 +239,7 @@ h3 {
   flex-direction: column;
   justify-content: center;
   padding: clamp(2.75rem, 6vh, 5.5rem) var(--page-pad) clamp(2rem, 4vh, 3.5rem);
+  container-type: inline-size;
 }
 
 .hero-kicker,
@@ -269,7 +270,7 @@ h3 {
 .hero h1 {
   max-width: 10ch;
   margin-bottom: clamp(1.25rem, 2.5vh, 2rem);
-  font-size: clamp(4.5rem, 8.8vw, 10.5rem);
+  font-size: clamp(4.5rem, 12.2cqw, 9.5rem);
   font-weight: 900;
   letter-spacing: -0.09em;
   line-height: 0.78;
@@ -438,10 +439,14 @@ h3 {
 
 .visual-stage {
   position: absolute;
-  inset: 13% 8% 20%;
+  top: 50%;
+  left: 50%;
   display: grid;
+  width: min(78%, 42rem);
+  aspect-ratio: 1;
   place-items: center;
   overflow: hidden;
+  transform: translate(-50%, -50%);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   background: rgba(13, 18, 16, 0.18);
@@ -475,10 +480,11 @@ h3 {
   position: relative;
   z-index: 2;
   color: var(--lime);
-  font-size: clamp(10rem, 22vw, 24rem);
+  font-size: clamp(8rem, 18vw, 19rem);
+  font-style: normal;
   font-weight: 900;
-  letter-spacing: -0.13em;
-  line-height: 0.7;
+  letter-spacing: 0;
+  line-height: 0.72;
 }
 
 .visual-cross {
@@ -1064,31 +1070,23 @@ h3 {
 .contact-section {
   position: relative;
   display: grid;
-  width: 100%;
-  max-width: none;
-  grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1.55fr);
-  gap: clamp(2rem, 7vw, 9rem);
-  padding-block: clamp(5.5rem, 10vw, 9rem);
-  overflow: hidden;
+  width: min(100%, var(--max-width));
+  max-width: var(--max-width);
+  grid-template-columns: minmax(18rem, 0.9fr) minmax(28rem, 1.1fr);
+  align-items: end;
+  gap: clamp(4rem, 8vw, 9rem);
+  padding-block: clamp(5rem, 8vw, 8rem);
+  clip-path: inset(0 -100vmax);
   color: var(--ink);
   background: var(--lime);
-}
-
-.contact-section::after {
-  position: absolute;
-  right: -8vw;
-  bottom: -21vw;
-  width: 42vw;
-  aspect-ratio: 1;
-  border: clamp(2rem, 5vw, 5rem) solid rgba(13, 18, 16, 0.08);
-  border-radius: 50%;
-  content: "";
+  box-shadow: 0 0 0 100vmax var(--lime);
 }
 
 .contact-heading,
 .contact-copy {
   position: relative;
   z-index: 2;
+  min-width: 0;
 }
 
 .contact-section .section-number,
@@ -1096,34 +1094,64 @@ h3 {
   color: var(--forest);
 }
 
-.contact-index {
-  margin: 0;
-  font-size: clamp(3.2rem, 7vw, 7.5rem);
-  font-weight: 900;
-  letter-spacing: -0.08em;
-  line-height: 0.74;
+.contact-heading .section-number {
+  margin-bottom: clamp(2.5rem, 5vw, 5rem);
 }
 
-.contact-copy h2 {
-  max-width: 11ch;
-  margin-bottom: 1.25rem;
-  font-size: clamp(3.4rem, 7.7vw, 8.6rem);
+.contact-heading h2 {
+  max-width: 8ch;
+  margin-bottom: 1.5rem;
+  font-size: clamp(3.5rem, 5.8vw, 6.6rem);
   font-weight: 900;
-  letter-spacing: -0.085em;
-  line-height: 0.82;
+  letter-spacing: -0.08em;
+  line-height: 0.84;
   text-transform: uppercase;
 }
 
-.contact-copy > p:not(.contact-status) {
-  max-width: 38rem;
-  margin-bottom: 2rem;
+.contact-intro {
+  max-width: 31rem;
+  margin: 0;
   color: #334238;
-  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  font-size: clamp(0.95rem, 1.25vw, 1.08rem);
+}
+
+.contact-copy {
+  padding-bottom: 0.2rem;
+}
+
+.contact-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.contact-panel-heading .eyebrow,
+.contact-availability {
+  margin: 0;
+}
+
+.contact-availability {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-availability > span {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--forest);
 }
 
 .contact-directory {
-  max-width: 50rem;
-  border-top: 2px solid var(--ink);
+  width: 100%;
 }
 
 .contact-line {
@@ -1131,8 +1159,15 @@ h3 {
   align-items: center;
   grid-template-columns: 7rem minmax(0, 1fr) auto;
   gap: 1rem;
-  padding-block: 1rem;
+  min-height: 4.35rem;
+  padding-block: 0.9rem;
   border-bottom: 1px solid rgba(13, 18, 16, 0.28);
+  transition: padding-inline 180ms var(--ease), background 180ms ease;
+}
+
+.contact-line:hover {
+  padding-inline: 0.75rem;
+  background: rgba(251, 252, 248, 0.32);
 }
 
 .contact-line > span:first-child {
@@ -1559,7 +1594,7 @@ h3 {
   }
 
   .hero h1 {
-    font-size: clamp(4rem, 9vw, 7.5rem);
+    font-size: clamp(4rem, 12cqw, 7.5rem);
   }
 
   .project-preview,
@@ -1708,11 +1743,14 @@ h3 {
   }
 
   .visual-stage {
-    inset: 15% 26% 17%;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 72%;
   }
 
   .hero-monogram {
-    font-size: clamp(8rem, 37vw, 13rem);
+    font-size: clamp(5.5rem, 25vw, 9rem);
   }
 
   .visual-code {
@@ -1805,22 +1843,20 @@ h3 {
   }
 
   .contact-section {
+    align-items: start;
+    gap: 4rem;
     padding-block: 5rem;
   }
 
   .contact-heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    display: block;
   }
 
-  .contact-index {
-    font-size: 2.5rem;
-    line-height: 0.75;
-    text-align: right;
+  .contact-heading .section-number {
+    margin-bottom: 2.5rem;
   }
 
-  .contact-copy h2 {
+  .contact-heading h2 {
     font-size: clamp(3.1rem, 14vw, 6.3rem);
     text-wrap: wrap;
   }
@@ -1890,7 +1926,11 @@ h3 {
   }
 
   .hero h1 {
-    font-size: clamp(3rem, 15vw, 4.6rem);
+    font-size: clamp(2.8rem, 14.2vw, 4.6rem);
+  }
+
+  .contact-heading h2 {
+    font-size: clamp(2.75rem, 13vw, 5rem);
   }
 
   .hero-statement {
@@ -1947,8 +1987,13 @@ h3 {
   }
 
   .contact-line {
-    grid-template-columns: 5.5rem minmax(0, 1fr) auto;
-    gap: 0.7rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.35rem 0.7rem;
+    min-height: 5.25rem;
+  }
+
+  .contact-line > span:first-child {
+    grid-column: 1 / -1;
   }
 
   .contact-line a {
