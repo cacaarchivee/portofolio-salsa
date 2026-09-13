@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# build output and caches
+dist/
+.astro/
+.vercel/
+artifacts/
+
+# local configuration
+.env
+.env.local
+.env.*.local
+
+# operating system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# public documents are opt-in: keep the folder, not unreviewed source CVs
+public/documents/*
+!public/documents/.gitkeep

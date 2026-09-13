@@ -1,0 +1,48 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section class="contact-section section-shell" id="contact" aria-labelledby="contact-title">
+  <p class="section-number">05 / Contact</p>
+  <div class="contact-copy" data-reveal>
+    <p class="eyebrow">Start a conversation</p>
+    <h2 id="contact-title">Have a front-end opportunity in mind?</h2>
+    <p>
+      For roles, project conversations, or a closer look at the work, email is the best place to begin.
+    </p>
+    <div class="contact-actions">
+      <a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+      <button
+        class="copy-button"
+        type="button"
+        data-copy-email
+        data-email={profile.email}
+        aria-describedby="copy-status"
+      >
+        Copy email
+      </button>
+    </div>
+    <p class="contact-status" id="copy-status" role="status" aria-live="polite" data-copy-status></p>
+  </div>
+</section>
+
+<script>
+  const copyButton = document.querySelector<HTMLButtonElement>('[data-copy-email]');
+  const copyStatus = document.querySelector<HTMLElement>('[data-copy-status]');
+
+  if (copyButton && copyStatus) {
+    copyButton.addEventListener('click', async () => {
+      const email = copyButton.dataset.email ?? '';
+      try {
+        if (!navigator.clipboard || !window.isSecureContext) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(email);
+        copyButton.textContent = 'Email copied';
+        copyStatus.textContent = `${email} copied to clipboard.`;
+      } catch {
+        copyButton.textContent = 'Open email app';
+        copyStatus.textContent = 'Copy was unavailable. Opening your email app instead.';
+        window.location.href = `mailto:${email}`;
+      }
+    });
+  }
+</script>

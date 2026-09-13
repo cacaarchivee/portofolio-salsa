@@ -1,0 +1,83 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project, projects },
+  }));
+}
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  projects: CollectionEntry<'projects'>[];
+}
+
+const { project, projects } = Astro.props;
+const { Content } = await render(project);
+const orderedProjects = [...projects].sort((a, b) => a.data.order - b.data.order);
+const currentIndex = orderedProjects.findIndex((item) => item.id === project.id);
+const nextProject = orderedProjects[(currentIndex + 1) % orderedProjects.length] ?? project;
+const { data } = project;
+---
+
+<BaseLayout title={data.title} description={data.description} pageClass="case-study-page">
+  <article>
+    <header class="case-hero section-shell">
+      <a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All projects</a>
+      <p class="section-number">Case study · 0{data.order}</p>
+      <h1>{data.title}</h1>
+      <p class="case-deck">{data.description}</p>
+    </header>
+
+    <div class="case-cover" data-reveal>
+      <img src={data.cover} alt="" width="1200" height="800" decoding="async" />
+    </div>
+
+    <div class="case-layout section-shell">
+      <aside class="case-facts" aria-label="Project facts">
+        <div>
+          <p class="eyebrow">Role</p>
+          <p>{data.role}</p>
+        </div>
+        <div>
+          <p class="eyebrow">Context</p>
+          <p>{data.company || data.category}</p>
+        </div>
+        {data.timeframe && (
+          <div>
+            <p class="eyebrow">Timeframe</p>
+            <p>{data.timeframe}</p>
+          </div>
+        )}
+        <div>
+          <p class="eyebrow">Stack</p>
+          <ul>
+            {data.stack.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        {(data.demoUrl || data.sourceUrl) && (
+          <div class="case-links">
+            {data.demoUrl && <a class="text-link" href={data.demoUrl}>View live project <span aria-hidden="true">↗</span></a>}
+            {data.sourceUrl && <a class="text-link" href={data.sourceUrl}>View source <span aria-hidden="true">↗</span></a>}
+          </div>
+        )}
+      </aside>
+
+      <div class="case-content prose" data-reveal>
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <nav class="next-project section-shell" aria-label="Case study navigation">
+    <p class="eyebrow">Next project · 0{nextProject.data.order}</p>
+    <a href={`/projects/${nextProject.id}/`}>
+      <span>{nextProject.data.shortTitle}</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+    <a class="back-link" href="/projects/">View all projects</a>
+  </nav>
+</BaseLayout>

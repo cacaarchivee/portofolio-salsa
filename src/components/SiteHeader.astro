@@ -1,0 +1,73 @@
+---
+import { profile } from '../data/profile';
+
+const path = Astro.url.pathname;
+---
+
+<header class="site-header" data-header>
+  <a class="wordmark" href="/" aria-label={`${profile.name}, home`}>
+    <span aria-hidden="true">S.</span>
+    <span class="wordmark-name">Salsabilla Edlanda Putri</span>
+  </a>
+
+  <button
+    class="menu-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="site-navigation"
+    aria-label="Open navigation menu"
+    data-menu-toggle
+  >
+    <span></span><span></span>
+  </button>
+
+  <nav id="site-navigation" class="site-nav" aria-label="Main navigation" data-menu>
+    <a href={path === '/' ? '#work' : '/#work'}>Work</a>
+    <a href={path === '/' ? '#experience' : '/#experience'}>Experience</a>
+    <a href={path === '/' ? '#about' : '/#about'}>About</a>
+    <a href={path === '/' ? '#contact' : '/#contact'}>Contact</a>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const menuButton = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+
+  if (header && menuButton && menu) {
+    const closeMenu = (restoreFocus = false) => {
+      header.removeAttribute('data-menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open navigation menu');
+      document.body.classList.remove('menu-open');
+      if (restoreFocus) menuButton.focus();
+    };
+
+    menuButton.addEventListener('click', () => {
+      const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        closeMenu();
+      } else {
+        header.setAttribute('data-menu-open', '');
+        menuButton.setAttribute('aria-expanded', 'true');
+        menuButton.setAttribute('aria-label', 'Close navigation menu');
+        document.body.classList.add('menu-open');
+        menu.querySelector<HTMLAnchorElement>('a')?.focus();
+      }
+    });
+
+    menu.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) closeMenu();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+        closeMenu(true);
+      }
+    });
+
+    window.matchMedia('(min-width: 48rem)').addEventListener('change', (event) => {
+      if (event.matches) closeMenu();
+    });
+  }
+</script>

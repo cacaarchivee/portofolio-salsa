@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#F7F5EF"/>
+  <rect x="820" width="380" height="630" fill="#244C3A"/>
+  <g opacity=".25" stroke="#F7F5EF">
+    <path d="M820 90h380M820 180h380M820 270h380M820 360h380M820 450h380M820 540h380"/>
+    <path d="M910 0v630M1000 0v630M1090 0v630"/>
+    <circle cx="1010" cy="315" r="155"/>
+    <circle cx="1010" cy="315" r="88"/>
+  </g>
+  <text x="72" y="98" fill="#244C3A" font-family="Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="4">FRONT-END DEVELOPER</text>
+  <text x="66" y="260" fill="#20251F" font-family="Georgia, serif" font-size="82">Salsabilla</text>
+  <text x="66" y="348" fill="#20251F" font-family="Georgia, serif" font-size="82">Edlanda Putri</text>
+  <text x="72" y="458" fill="#667066" font-family="Arial, sans-serif" font-size="26">Angular · TypeScript · API-driven applications</text>
+  <text x="885" y="350" fill="#F7F5EF" font-family="Georgia, serif" font-size="105" font-style="italic">SEP</text>
+</svg>

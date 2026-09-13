@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectPreview from '../../components/ProjectPreview.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Projects"
+  description="Six professional and academic projects by Salsabilla Edlanda Putri, spanning Angular, TypeScript, API integration, PHP, NLP, and Android."
+  pageClass="projects-page"
+>
+  <header class="page-hero section-shell">
+    <p class="section-number">Selected archive · 2023–2025</p>
+    <h1>Projects grounded<br />in real contribution.</h1>
+    <p>
+      Six case studies across professional web applications, full-stack coursework, applied NLP, and mobile development.
+    </p>
+  </header>
+
+  <section class="project-archive section-shell" aria-labelledby="archive-title">
+    <h2 id="archive-title" class="sr-only">All projects</h2>
+    {projects.map((project, index) => (
+      <ProjectPreview project={project} index={index} compact />
+    ))}
+  </section>
+</BaseLayout>
