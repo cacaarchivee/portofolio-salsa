@@ -67,6 +67,7 @@ try {
     for (const viewport of [
       { width: 320, height: 720 },
       { width: 375, height: 812 },
+      { width: 481, height: 634 },
       { width: 768, height: 1024 },
       { width: 1280, height: 900 },
       { width: 1440, height: 1000 },
@@ -143,6 +144,17 @@ try {
         await page.screenshot({ path: path.join(artifacts, 'home-375.png'), fullPage: true });
       }
 
+      if (viewport.width === 481) {
+        const menuButton = page.locator('[data-menu-toggle]');
+        await menuButton.click();
+        assert.equal(await menuButton.getAttribute('aria-expanded'), 'true', '481px mobile menu did not open');
+        const menuOverflow = await page.locator('[data-menu]').evaluate((menu) => menu.scrollHeight <= menu.clientHeight);
+        assert.equal(menuOverflow, true, '481px mobile menu needs vertical scrolling');
+        await page.waitForTimeout(400);
+        await page.screenshot({ path: path.join(artifacts, 'menu-481.png') });
+        await page.keyboard.press('Escape');
+      }
+
       if (viewport.width === 1440) {
         await revealPage(page);
         await page.screenshot({ path: path.join(artifacts, 'home-1440.png'), fullPage: true });
@@ -181,6 +193,15 @@ try {
     assert.equal(await routePage.locator('h1').count(), 1, 'Custom 404 page is missing its H1');
     await routeContext.close();
 
+    const wideCaseContext = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+    const wideCasePage = await wideCaseContext.newPage();
+    const wideCaseResponse = await wideCasePage.goto(`${origin}/projects/smart-table-medical-document-validation/`, { waitUntil: 'networkidle' });
+    assert.equal(wideCaseResponse?.status(), 200, 'Wide case-study navigation failed');
+    const wideCaseOverflow = await wideCasePage.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
+    assert.equal(wideCaseOverflow, true, 'Wide case study has horizontal overflow');
+    await wideCasePage.screenshot({ path: path.join(artifacts, 'case-smart-1920.png') });
+    await wideCaseContext.close();
+
     const reducedContext = await browser.newContext({
       viewport: { width: 375, height: 812 },
       reducedMotion: 'reduce',
@@ -195,9 +216,11 @@ try {
       javaScriptEnabled: false,
     });
     const noScriptPage = await noScriptContext.newPage();
-    const noScriptResponse = await noScriptPage.goto(`${origin}/projects/higher-education-website/`);
+    const noScriptResponse = await noScriptPage.goto(`${origin}/projects/smart-table-medical-document-validation/`);
     assert.equal(noScriptResponse?.status(), 200, 'No-JavaScript case study failed');
     assert.equal(await noScriptPage.locator('h1').isVisible(), true, 'Core content is hidden without JavaScript');
+    const noScriptOverflow = await noScriptPage.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth);
+    assert.equal(noScriptOverflow, true, 'Mobile case study has horizontal overflow');
     await noScriptContext.close();
 
     assert.deepEqual(browserErrors, [], `Browser errors detected:\n${browserErrors.join('\n')}`);
@@ -205,7 +228,7 @@ try {
     await browser.close();
   }
 
-  console.log('Browser audit passed: 6 viewports, hero-boundary checks, 8 routes with refresh, mobile interactions, 404, reduced motion, no-JS, and console checks.');
+  console.log('Browser audit passed: 7 viewports, hero-boundary checks, 8 routes with refresh, mobile interactions, 404, reduced motion, no-JS, and console checks.');
   console.log(`Screenshots: ${path.join(artifacts, 'home-375.png')} and ${path.join(artifacts, 'home-1440.png')}`);
 } finally {
   server.kill();

@@ -21,15 +21,43 @@ const orderedProjects = [...projects].sort((a, b) => a.data.order - b.data.order
 const currentIndex = orderedProjects.findIndex((item) => item.id === project.id);
 const nextProject = orderedProjects[(currentIndex + 1) % orderedProjects.length] ?? project;
 const { data } = project;
+const [titleLead, ...titleDetailParts] = data.title.split(' — ');
+const titleDetail = titleDetailParts.join(' — ');
 ---
 
 <BaseLayout title={data.title} description={data.description} pageClass="case-study-page">
   <article>
     <header class="case-hero section-shell">
-      <a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All projects</a>
-      <p class="section-number">Case study · 0{data.order}</p>
-      <h1>{data.title}</h1>
-      <p class="case-deck">{data.description}</p>
+      <div class="case-hero-top">
+        <a class="back-link" href="/projects/"><span aria-hidden="true">←</span> All projects</a>
+        <p class="section-number">Case study · 0{data.order}</p>
+      </div>
+
+      <div class="case-hero-grid">
+        <h1>
+          <span>{titleLead}</span>
+          {titleDetail && <span class="case-title-detail">{titleDetail}</span>}
+        </h1>
+        <div class="case-hero-summary">
+          <p class="case-deck">{data.description}</p>
+          <dl class="case-hero-meta">
+            <div>
+              <dt>Role</dt>
+              <dd>{data.role}</dd>
+            </div>
+            <div>
+              <dt>Context</dt>
+              <dd>{data.company || data.category}</dd>
+            </div>
+            {data.timeframe && (
+              <div>
+                <dt>Timeframe</dt>
+                <dd>{data.timeframe}</dd>
+              </div>
+            )}
+          </dl>
+        </div>
+      </div>
     </header>
 
     <div class="case-cover" data-reveal>
@@ -39,21 +67,7 @@ const { data } = project;
     <div class="case-layout section-shell">
       <aside class="case-facts" aria-label="Project facts">
         <div>
-          <p class="eyebrow">Role</p>
-          <p>{data.role}</p>
-        </div>
-        <div>
-          <p class="eyebrow">Context</p>
-          <p>{data.company || data.category}</p>
-        </div>
-        {data.timeframe && (
-          <div>
-            <p class="eyebrow">Timeframe</p>
-            <p>{data.timeframe}</p>
-          </div>
-        )}
-        <div>
-          <p class="eyebrow">Stack</p>
+          <p class="eyebrow">Project stack</p>
           <ul>
             {data.stack.map((item) => <li>{item}</li>)}
           </ul>

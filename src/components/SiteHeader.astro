@@ -23,10 +23,30 @@ const path = Astro.url.pathname;
   </button>
 
   <nav id="site-navigation" class="site-nav" aria-label="Main navigation" data-menu>
-    <a href={path === '/' ? '#work' : '/#work'}>Work</a>
-    <a href={path === '/' ? '#experience' : '/#experience'}>Experience</a>
-    <a href={path === '/' ? '#about' : '/#about'}>About</a>
-    <a href={path === '/' ? '#contact' : '/#contact'}>Contact</a>
+    <div class="nav-meta" aria-hidden="true">
+      <span>Navigation</span>
+      <span>Portfolio / 2026</span>
+    </div>
+
+    <div class="nav-links">
+      <a class="nav-link" href={path === '/' ? '#work' : '/#work'}>
+        <span class="nav-index" aria-hidden="true">01</span><span>Work</span><span class="nav-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="nav-link" href={path === '/' ? '#experience' : '/#experience'}>
+        <span class="nav-index" aria-hidden="true">02</span><span>Experience</span><span class="nav-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="nav-link" href={path === '/' ? '#about' : '/#about'}>
+        <span class="nav-index" aria-hidden="true">03</span><span>About</span><span class="nav-arrow" aria-hidden="true">↗</span>
+      </a>
+      <a class="nav-link" href={path === '/' ? '#contact' : '/#contact'}>
+        <span class="nav-index" aria-hidden="true">04</span><span>Contact</span><span class="nav-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="nav-contact">
+      <a href={`mailto:${profile.email}`}>{profile.email}</a>
+      <span>{profile.location}</span>
+    </div>
   </nav>
 </header>
 
